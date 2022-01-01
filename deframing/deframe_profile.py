@@ -8,6 +8,12 @@ import datetime
 
 from utils import utils
 
+from utils.rtbufferdeframer import RtBufferDeframer, RtBufferDeframerNumpy
+
+deframe_tester_class = RtBufferDeframer
+#deframe_tester_class = RtBufferDeframerNumpy
+
+
 data = {}
 def read_json(server):
     with open(f'../logs/{server}.json', 'r') as f:
@@ -54,14 +60,13 @@ for input_data, results in data['dmetcp']:
 
 '''
 if __name__ == '__main__':
-    from utils.rtbufferdeframer import RtBufferDeframer
 
-    deframe_accuracy(RtBufferDeframer)
+    deframe_accuracy(deframe_tester_class)
 
     print(f"{datetime.datetime.now()} | Running profiling ...")
     init_time = time.time()
     import timeit
-    t = timeit.Timer('deframe_profile(RtBufferDeframer)', setup='from __main__ import deframe_profile; from utils.rtbufferdeframer import RtBufferDeframer')
+    t = timeit.Timer('deframe_profile(deframe_tester_class)', globals = globals())
     total_time = t.repeat(repeat=20, number=40)
     print("Profiled time:",total_time)
     print(f"Mean: {np.mean(total_time)}")
