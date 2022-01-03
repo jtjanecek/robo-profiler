@@ -8,7 +8,7 @@ import datetime
 
 from utils import utils
 
-from utils.rtbufferdeframer import RtBufferDeframer, RtBufferDeframerNumpy
+from utils.rtbufferdeframer import RtBufferDeframer 
 
 deframe_tester_class = RtBufferDeframer
 #deframe_tester_class = RtBufferDeframerNumpy

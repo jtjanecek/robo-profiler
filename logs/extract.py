@@ -18,6 +18,9 @@ with open('main.log','r') as f:
         elif 'Deframe |' in line:
             inputs[server].append(['d',line.split("| ")[-1].strip()])
    
+'''
+Deframe
+'''
 
 pairs = defaultdict(list)
 
@@ -50,7 +53,7 @@ for server in ['mls', 'dmetcp']:
         if d_data != []:
             mls_data_clean.append([i_data, d_data])
 
-    with open(f'{server}.json', 'w') as f:
+    with open(f'{server}_deframe.json', 'w') as f:
         f.write(json.dumps(mls_data_clean, indent=4))
     
 
